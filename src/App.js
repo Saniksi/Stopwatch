@@ -1,82 +1,84 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Controls from './components/Controls';
 import Dial from './components/Dial';
-import './App.css';
+import { Card } from './components/Card';
 
 function App() {
   const [time, setTime] = useState(0);
   const [isCounting, setIsCounting] = useState(false);
 
+  const hours = Math.floor(time / (1000 * 60 * 60)) % 24;
+  const tensHours = Math.floor(hours / 10);
+  const onesHours = hours % 10;
+
+  const minutes = Math.floor(time / (60 * 1000)) % 60;
+  const tensMinutes = Math.floor(minutes / 10);
+  const onesMinutes = minutes % 10;
+
+  const seconds = Math.floor(time / 1000) % 60;
+  const tensSeconds = Math.floor(seconds / 10);
+  const onesSeconds = seconds % 10;
+
+  // console.log('app re-render');
+
   useEffect(() => {
     const interval = setInterval(() => {
-      isCounting && setTime((time) => time + 10);
+      isCounting && setTime((previousTime) => previousTime + 10);
     }, 10);
     return () => {
       clearInterval(interval);
     };
   }, [isCounting]);
 
-  function handleStart() {
+  const startStopwatch = useCallback(() => {
     setIsCounting(true);
-  }
+  }, []);
 
-  function handlePause() {
+  const pauseStopwatch = useCallback(() => {
     setIsCounting(false);
-  }
+  }, []);
 
-  function handleReset() {
+  const resetStopwatch = useCallback(() => {
     setTime(0);
     setIsCounting(false);
-  }
-
-  function handlePause_2(event) {
-    const start = Date.now();
-
-    if (event.detail === 1) {
-      console.log('start = ' + start);
-    }
-
-    if (!isCounting) {
-      setIsCounting(true);
-    }
-
-    // setTimeout(() => {
-    //   if (event.detail === 2) {
-    //     setIsCounting(false);
-    //   }
-    // }, 300);
-
-    if (event.detail === 2) {
-      const end = Date.now();
-      const res = end - start;
-
-      console.log('end = ' + end);
-      console.log(`end - start = ${res}`); // Чому тут результат завжди 0 ?
-
-      setTimeout(() => {
-        setIsCounting(false);
-      }, res || 300);
-    }
-  }
-
-  function startAndReset() {
-    setIsCounting(true);
-    setTime(0);
-  }
+  }, []);
 
   return (
-    <div>
-      <h1>Stopwatch</h1>
-      <Dial time={time} />
+    <div className="wrapper">
+      <h1 className="title">Stopwatch</h1>
+      <div className="inner">
+        <Dial isCounting={isCounting} time={time} />
+        <div className="cards">
+          <div className="card">
+            <div className="card__segment">
+              <Card number={tensHours} isCounting={isCounting} />
+              <Card number={onesHours} isCounting={isCounting} />
+            </div>
+            <span className="card__title">Hours</span>
+          </div>
+          <div className="card">
+            <div className="card__segment">
+              <Card number={tensMinutes} isCounting={isCounting} />
+              <Card number={onesMinutes} isCounting={isCounting} />
+            </div>
+            <span className="card__title">Minutes</span>
+          </div>
+          <div className="card">
+            <div className="card__segment">
+              <Card number={tensSeconds} isCounting={isCounting} />
+              <Card number={onesSeconds} isCounting={isCounting} />
+            </div>
+            <span className="card__title">Seconds</span>
+          </div>
+        </div>
+      </div>
       <Controls
-        isCounting={isCounting}
         time={time}
-        startStopwatch={handleStart}
-        pauseStopwatch={handlePause}
-        resetStopwatch={handleReset}
-        pauseStopwatch_2={handlePause_2}
-        startAndReset={startAndReset}
+        isCounting={isCounting}
+        startStopwatch={startStopwatch}
+        pauseStopwatch={pauseStopwatch}
+        resetStopwatch={resetStopwatch}
       />
     </div>
   );

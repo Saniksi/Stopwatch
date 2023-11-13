@@ -1,29 +1,22 @@
+import { memo } from 'react';
+
 function Controls(props) {
-  const {
-    startStopwatch,
-    pauseStopwatch,
-    resetStopwatch,
-    pauseStopwatch_2,
-    startAndReset,
-    isCounting,
-    time,
-  } = props;
+  const { startStopwatch, pauseStopwatch, resetStopwatch, isCounting, time } =
+    props;
+
+  console.log('controls re-render');
 
   return (
-    <>
-      <div>
-        {isCounting ? <button onClick={pauseStopwatch}>Pause</button> : null}
-        <button onClick={startStopwatch}>Start</button>
-        {time !== 0 ? <button onClick={resetStopwatch}>Reset</button> : null}
-      </div>
-      <div>
-        <h2>Task from Vova</h2>{' '}
-        <button onClick={(event) => pauseStopwatch_2(event)}>||</button>
-        <button onClick={startAndReset}>{'>'}</button>
-        <button onClick={resetStopwatch}>{'[]'}</button>
-      </div>
-    </>
+    <div className="controls">
+      <button onClick={pauseStopwatch} disabled={isCounting ? false : true}>
+        Pause
+      </button>
+      <button onClick={startStopwatch}>Start</button>
+      <button onClick={resetStopwatch} disabled={time > 0 ? false : true}>
+        Reset
+      </button>
+    </div>
   );
 }
 
-export default Controls;
+export default memo(Controls);

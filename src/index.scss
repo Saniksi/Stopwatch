@@ -1,0 +1,209 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.wrapper {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f5f5fa;
+  font-family: 'M PLUS Rounded 1c';
+  align-items: center;
+  line-height: 1;
+  font-size: 5rem;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 568px) {
+    padding: 1rem;
+    font-size: 2rem;
+  }
+}
+
+.title {
+  font-size: 3rem;
+
+  @media (max-width: 568px) {
+    font-size: 1.5rem;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+
+  @media (max-width: 568px) {
+    gap: 1rem;
+  }
+}
+
+.dial {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #7878ab;
+
+  @media (max-width: 568px) {
+    margin-top: 0.5rem;
+  }
+}
+
+.dial__segment-description {
+  font-size: 2rem;
+
+  @media (max-width: 568px) {
+    font-size: 1rem;
+  }
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-family: Arial;
+  color: rgb(204, 204, 204);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.card__segment {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5rem;
+}
+
+.card__title {
+  font-size: 2rem;
+
+  @media (max-width: 568px) {
+    font-size: 1rem;
+  }
+}
+
+.flip-card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 0.2em;
+}
+
+.top,
+.bottom,
+.top-flip,
+.bottom-flip {
+  height: 0.75em;
+  padding: 0.25em;
+  overflow: hidden;
+}
+
+.top,
+.top-flip {
+  width: 100%;
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  background-color: rgb(51, 51, 51);
+  border-bottom: 1px solid rgba(250, 250, 250, 0.3);
+}
+
+.bottom,
+.bottom-flip {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background-color: #333333;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+}
+
+.top-flip {
+  position: absolute;
+  transform-origin: bottom;
+  animation-name: flip-top;
+  animation-duration: 250ms;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.bottom-flip {
+  position: absolute;
+  bottom: 0;
+  transform-origin: top;
+  transform: rotateX(90deg);
+  animation-name: flip-bottom;
+  animation-delay: 250ms;
+  animation-duration: 250ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flip-top {
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+
+@keyframes flip-bottom {
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.controls {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
+
+  @media (max-width: 568px) {
+    gap: 1rem;
+  }
+}
+
+.controls button {
+  padding: 12px 32px;
+  color: #7878ab;
+  font-family: 'M PLUS Rounded 1c';
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  background-color: #f5f5fa;
+  border-radius: 2rem;
+  border: none;
+  box-shadow: -10px -10px 20px 0px #fff,
+    10px 10px 20px 0px rgba(170, 170, 204, 0.5),
+    5px 5px 10px 0px rgba(170, 170, 204, 0.25),
+    -5px -5px 10px 0px rgba(255, 255, 255, 0.5);
+
+  @media (max-width: 768px) {
+    padding: 8px 22px;
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 568px) {
+    padding: 4px 11px;
+  }
+}
+
+.controls button:active {
+  background-color: #e5e5f0;
+}
+
+.controls button:disabled {
+  opacity: 0.25;
+}
