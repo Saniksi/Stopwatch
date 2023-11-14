@@ -1,9 +1,5 @@
-import { memo } from 'react';
-
-function Dial(props) {
+export function Dial(props) {
   const { time } = props;
-
-  console.log('dial re-render');
 
   return (
     <div className="dial">
@@ -26,5 +22,3 @@ function Dial(props) {
     </div>
   );
 }
-
-export default memo(Dial);
