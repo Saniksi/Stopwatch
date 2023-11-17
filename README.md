@@ -1,6 +1,6 @@
 # React App - Stopwatch
 
-[Stopwatch](<[https://](https://flip-stopwatch-with-deal.netlify.app/)>)
+[Stopwatch](https://flip-stopwatch-with-deal.netlify.app/)
 
 <!-- <a href='https://flip-stopwatch-with-deal.netlify.app/' target="_blank">Stopwatch</a> </br> -->
 
