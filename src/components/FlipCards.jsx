@@ -1,6 +1,6 @@
 import { Card } from './Card';
 
-export function FlipCards({ time }) {
+export function FlipCards({ time, isCounting }) {
   const hours = Math.floor(time / (1000 * 60 * 60)) % 24;
   const tensHours = Math.floor(hours / 10);
   const onesHours = hours % 10;
@@ -17,22 +17,22 @@ export function FlipCards({ time }) {
     <div className="cards">
       <div className="card">
         <div className="card__segment">
-          <Card number={tensHours} />
-          <Card number={onesHours} />
+          <Card number={tensHours} isCounting={isCounting} />
+          <Card number={onesHours} isCounting={isCounting} />
         </div>
         <span className="card__title">Hours</span>
       </div>
       <div className="card">
         <div className="card__segment">
-          <Card number={tensMinutes} />
-          <Card number={onesMinutes} />
+          <Card number={tensMinutes} isCounting={isCounting} />
+          <Card number={onesMinutes} isCounting={isCounting} />
         </div>
         <span className="card__title">Minutes</span>
       </div>
       <div className="card">
         <div className="card__segment">
-          <Card number={tensSeconds} />
-          <Card number={onesSeconds} />
+          <Card number={tensSeconds} isCounting={isCounting} />
+          <Card number={onesSeconds} isCounting={isCounting} />
         </div>
         <span className="card__title">Seconds</span>
       </div>

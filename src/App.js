@@ -35,7 +35,7 @@ function App() {
       <h1 className="title">Stopwatch</h1>
       <div className="inner">
         <Dial isCounting={isCounting} time={time} />
-        <FlipCards time={time} />
+        <FlipCards time={time} isCounting={isCounting} />
       </div>
       <Controls
         time={time}

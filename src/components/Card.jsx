@@ -1,14 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export const Card = ({ number }) => {
+export const Card = ({ number, isCounting }) => {
   const [isTop, setIsTop] = useState(false);
   const [isBottom, setIsBottom] = useState(false);
   const [bottomNumber, setBottomNumber] = useState(0);
   const [topNumber, setTopNumber] = useState(0);
 
+  const isAnimation = useRef(isCounting);
+
   useEffect(() => {
-    setIsTop(true);
-    setIsBottom(true);
+    isAnimation.current = isCounting;
+  }, [isCounting]);
+
+  useEffect(() => {
+    if (isAnimation.current) {
+      setIsTop(true);
+      setIsBottom(true);
+    }
 
     if (number === 0) {
       setTopNumber(0);
