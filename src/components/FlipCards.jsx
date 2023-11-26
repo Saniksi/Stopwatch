@@ -1,17 +1,32 @@
 import { Card } from './Card';
+import { calculateTimePart } from '../utils/calculateTimePart';
+import {
+  SECONDS_IN_MINUTE,
+  MILLISECONDS_IN_HOUR,
+  HOURS_IN_DAY,
+  MILLISECONDS_IN_MINUTE,
+  MINUTES_IN_HOUR,
+  MILLISECONDS_IN_SECOND,
+} from '../utils/constants';
 
-export function FlipCards({ time, isCounting }) {
-  const hours = Math.floor(time / (1000 * 60 * 60)) % 24;
-  const tensHours = Math.floor(hours / 10);
-  const onesHours = hours % 10;
+export function FlipCards(props) {
+  const { time, isCounting } = props;
 
-  const minutes = Math.floor(time / (60 * 1000)) % 60;
-  const tensMinutes = Math.floor(minutes / 10);
-  const onesMinutes = minutes % 10;
+  const hours = calculateTimePart(time, MILLISECONDS_IN_HOUR, HOURS_IN_DAY);
+  const minutes = calculateTimePart(
+    time,
+    MILLISECONDS_IN_MINUTE,
+    MINUTES_IN_HOUR
+  );
+  const seconds = calculateTimePart(
+    time,
+    MILLISECONDS_IN_SECOND,
+    SECONDS_IN_MINUTE
+  );
 
-  const seconds = Math.floor(time / 1000) % 60;
-  const tensSeconds = Math.floor(seconds / 10);
-  const onesSeconds = seconds % 10;
+  const { tens: tensHours, ones: onesHours } = hours;
+  const { tens: tensMinutes, ones: onesMinutes } = minutes;
+  const { tens: tensSeconds, ones: onesSeconds } = seconds;
 
   return (
     <div className="cards">

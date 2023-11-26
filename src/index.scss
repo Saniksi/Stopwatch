@@ -13,6 +13,7 @@
   align-items: center;
   line-height: 1;
   font-size: 5rem;
+  color: #7878ab;
 
   @media (max-width: 768px) {
     font-size: 3rem;
@@ -48,7 +49,6 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  color: #7878ab;
 
   @media (max-width: 568px) {
     margin-top: 0.5rem;
@@ -85,6 +85,7 @@
 
 .card__title {
   font-size: 2rem;
+  color: #7878ab;
 
   @media (max-width: 568px) {
     font-size: 1rem;

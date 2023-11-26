@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 
-export const Card = ({ number, isCounting }) => {
+export const Card = (props) => {
+  const { number, isCounting } = props;
+  
   const [isTop, setIsTop] = useState(false);
   const [isBottom, setIsBottom] = useState(false);
   const [bottomNumber, setBottomNumber] = useState(0);
